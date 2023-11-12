@@ -40,7 +40,7 @@ public class HomeController {
     }
     @Autowired
     private UserRepository userRepo;
-    @PostMapping("/registration_control")
+    @PostMapping("/registration_proc")
     public String reg(@ModelAttribute User user, Model model) {
         for(User felhasznalo2: userRepo.findAll())
             if(felhasznalo2.getEmail().equals(user.getEmail())){
@@ -55,5 +55,7 @@ public class HomeController {
         model.addAttribute("id", user.getId());
         return "regSucces";
     }
+
+
 
 }
