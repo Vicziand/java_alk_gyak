@@ -40,7 +40,7 @@ public class HomeController {
     }
     @Autowired
     private UserRepository userRepo;
-    @PostMapping("/regisztral_feldolgoz")
+    @PostMapping("/registration_control")
     public String reg(@ModelAttribute User user, Model model) {
         for(User felhasznalo2: userRepo.findAll())
             if(felhasznalo2.getEmail().equals(user.getEmail())){
