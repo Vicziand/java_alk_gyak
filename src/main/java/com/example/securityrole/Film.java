@@ -1,4 +1,4 @@
-package mozimusor;
+package com.example.securityrole;
 
 import jakarta.persistence.*;
 
@@ -11,7 +11,7 @@ public class Film {
     private Boolean szines;
     private String szinkron;
     private  String szarmazas;
-
+    private String mufaj;
     private  Integer hossz;
 
     public String getFilmcim() {
@@ -52,5 +52,13 @@ public class Film {
 
     public void setHossz(Integer hossz) {
         this.hossz = hossz;
+    }
+
+    public String getMufaj() {
+        return mufaj;
+    }
+
+    public void setMufaj(String mufaj) {
+        this.mufaj = mufaj;
     }
 }

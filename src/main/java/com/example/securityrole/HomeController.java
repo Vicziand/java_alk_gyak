@@ -6,9 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.security.core.Authentication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,5 +54,15 @@ public class HomeController {
     }
 
 
+    @Autowired private FilmRepo filmRepo;
+    @GetMapping("/film")
+    public String rendeles(Model model) {
+        List<Film> filmek = new ArrayList<>();
+        for (Film film : filmRepo.findAll()) {
+            filmek.add(film);
+        }
+        model.addAttribute("filmek", filmek);
+        return "film";
+    }
 
 }

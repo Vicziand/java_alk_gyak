@@ -1,4 +1,4 @@
-package mozimusor;
+package com.example.securityrole;
 import jakarta.persistence.*;
 
 @Entity
