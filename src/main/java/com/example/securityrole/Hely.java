@@ -5,8 +5,12 @@ import jakarta.persistence.*;
 @Table(name = "hely")
 
 public class Hely {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private Integer fkod;
+
     private Integer moziazon;
 
     public Integer getFkod() {

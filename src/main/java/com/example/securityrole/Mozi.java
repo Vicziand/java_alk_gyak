@@ -2,15 +2,26 @@ package com.example.securityrole;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "mozi")
 
 public class Mozi {
+
     @Id
+    private String moziazon;
     private String mozinev;
     private String irszam;
     private String cim;
     private  String telefon;
+
+    public String getMoziazon() {
+        return moziazon;
+    }
+
+    public void setMoziazon(String moziazon) {
+        this.moziazon = moziazon;
+    }
 
     public String getMozinev() {
         return mozinev;

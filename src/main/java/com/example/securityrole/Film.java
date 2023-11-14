@@ -2,17 +2,29 @@ package com.example.securityrole;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "film")
 
 public class Film {
+
     @Id
+    private Integer fkod;
     private String filmcim;
     private Boolean szines;
     private String szinkron;
     private  String szarmazas;
     private String mufaj;
+
     private  Integer hossz;
+
+    public Integer getFkod() {
+        return fkod;
+    }
+
+    public void setFkod(Integer fkod) {
+        this.fkod = fkod;
+    }
 
     public String getFilmcim() {
         return filmcim;
