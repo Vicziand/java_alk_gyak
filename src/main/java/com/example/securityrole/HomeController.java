@@ -1,11 +1,13 @@
 package com.example.securityrole;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +65,32 @@ public class HomeController {
         }
         model.addAttribute("filmek", filmek);
         return "film";
+    }
+
+    @GetMapping("/kapcsolat")
+    public String kapcsolat(Model model) {
+        model.addAttribute("kapcs", new Kapcsolat());
+        return "kapcsolat";
+    }
+    @Autowired private KapcsolatRepo kapcsolatRepo;
+    @PostMapping(value="/ment")
+    public String mentKapcs(@ModelAttribute Kapcsolat kapcsolat, RedirectAttributes redirAttr, String username, Authentication authentication){
+        kapcsolat.setFelado("Guest");
+        if (authentication != null && authentication.isAuthenticated()){
+            kapcsolat.setFelado(authentication.getName());
+        }
+
+        kapcsolatRepo.save(kapcsolat);
+        redirAttr.addFlashAttribute("uzenet","Az üzenet küldése sikeres! ID="+kapcsolat.getId());
+        return "redirect:/";
+    }
+
+    @Autowired private UzenetRepo uzenetRepo;
+    @GetMapping("/admin/uzenetek")
+    public String uzenetek(Model model){
+        List<Uzenet> uzenets = uzenetRepo.findAllOrderByCreatedAtDesc();
+        model.addAttribute("uzenets", uzenets);
+        return "uzenetek";
     }
 
 }
